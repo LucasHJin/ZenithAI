@@ -1,10 +1,13 @@
 .header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     align-self: center;
     background-color: grey;
     width: 100%;
+}
+
+.header .navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .header .left-header .logo-button img{
