@@ -1,5 +1,6 @@
 import React from 'react';
 import '../styles/header.css'
+import Button from './Button.jsx'
 
 function Header() {
     
@@ -15,15 +16,10 @@ function Header() {
         </button>
       </div>
       <div className='right-header'>
-        <button onClick={handleClick} className='p-button right-button'>
-            Powerlifting
-        </button>
-        <button onClick={handleClick} className='b-button right-button'>
-            Bodybuilding
-        </button>
-        <button onClick={handleClick} className='profile-button right-button'>
-            Profile
-        </button>
+        <Button text="Literature" color="grey" text_color="white" className='right-button l-button'/>
+        <Button text="Powerlifting" color="grey" text_color="white" className='right-button p-button'/>
+        <Button text="Bodybuilding" color="grey" text_color="white" className='right-button b-button'/>
+        <Button text="Profile" color="grey" text_color="white" className='right-button profile-button'/>
       </div>
     </div>
   );
