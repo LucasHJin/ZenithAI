@@ -1,26 +1,44 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import '../styles/button.css'
+
 
 //button component for all buttons on sight -> pass specific values with props
 
-const Button = ({ text, color, text_color, height, width, className, toPage }) => {
+//creating a custom styled button for animations
+const StyledButton = styled.button`
+  transition: all 0.3s ease;
 
+  /* Apply the passed-in styles for the button */
+  background-color: ${(props) => props.color};
+  color: ${(props) => props.text_color};
+  height: ${(props) => `${props.height}vh`};
+  width: ${(props) => `${props.width}vw`};
+  border: 2px solid ${(props) => props.text_color};
+
+  /* Hover effect */
+  &:hover {
+    background-color: ${(props) => props.text_color};
+    color: ${(props) => props.color};
+    border-color: ${(props) => props.color};
+  }
+`;
+
+const Button = ({ text, color, text_color, height, width, className, toPage }) => {
+  //use custom StyledButton instead of normal button
   return (
     <Link to={toPage} style={{ textDecoration: 'none', color: 'inherit' }}>
-      <button 
-        className={`styled-button ${className}`} //apply prop classNames (so that parent component can modify)
-        style={{ 
-          backgroundColor: color, 
-          color: text_color, 
-          height: `${height}vh`, 
-          width: `${width}vw`,
-          border: `2px solid `+text_color, 
-        }}
+      <StyledButton
+        className={`styled-button ${className}`}
+        color={color}
+        text_color={text_color}
+        height={height}
+        width={width}
       >
         {text || "BUTTON"}
-      </button>
+      </StyledButton>
     </Link>
   );
 };
@@ -42,7 +60,7 @@ Button.defaultProps = {
     height: 5,
     width: 5,
     className: '',
-    toPage: '',
+    toPage: '/',
 };
 
 export default Button;
