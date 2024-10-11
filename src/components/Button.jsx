@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -15,7 +15,8 @@ const StyledButton = styled.button`
   background-color: ${(props) => props.color};
   color: ${(props) => props.text_color};
   height: ${(props) => `${props.height}vh`};
-  width: ${(props) => `${props.width}vw`};
+  width: ${(props) => (props.option2 ? 'auto' : `${props.width}vw`)}; /* take up as much width as necessary -> so that each button can be equal spaced*/
+  padding: ${(props) => (props.option2 ? '0' : '0')}; /* no padding */
   border: ${(props) => (props.option2 ? 'none' : `2px solid ${props.border_color}`)};
   position: relative;
 
@@ -53,6 +54,9 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({ text, color, text_color, border_color, height, width, className, toPage, option2 }) => {
+  const textRef = useRef(null);
+  const [textWidth, setTextWidth] = useState(0);
+
   //use custom StyledButton instead of normal button
   return (
     <Link to={toPage} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -89,7 +93,7 @@ Button.defaultProps = {
     text_color: '#FFFFFF',
     border_color: '#D3D3D3',
     height: 5,
-    width: 5,
+    width: 7,
     className: '',
     toPage: '/',
     option2: false,
