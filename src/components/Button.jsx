@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -54,9 +54,6 @@ const StyledButton = styled.button`
 `;
 
 const Button = ({ text, color, text_color, border_color, height, width, className, toPage, option2 }) => {
-  const textRef = useRef(null);
-  const [textWidth, setTextWidth] = useState(0);
-
   //use custom StyledButton instead of normal button
   return (
     <Link to={toPage} style={{ textDecoration: 'none', color: 'inherit' }}>
