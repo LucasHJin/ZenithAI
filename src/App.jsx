@@ -2,10 +2,9 @@ import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Layout from './pages/Layout';
-import Bodybuilding from './pages/Bodybuilding';
-import Powerlifting from './pages/Powerlifting';
+import Overview from './pages/Overview';
 import Literature from './pages/Literature';
-import Profile from './pages/Profile';
+import Media from './pages/Media';
 import Home from './pages/Home';
 import NoPage from './pages/NoPage'
 
@@ -18,10 +17,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Layout />}> {/* wrap routes in layout (to always have nav bar) */}
             <Route index element={<Home />} />  {/* route for '/' */}
-            <Route path="/bodybuilding" element={<Bodybuilding />} />
-            <Route path="/powerlifting" element={<Powerlifting />} />
+            <Route path="/overview" element={<Overview />} />
             <Route path="/literature" element={<Literature />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route path="/media" element={<Media />} />
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>

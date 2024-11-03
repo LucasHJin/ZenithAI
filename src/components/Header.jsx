@@ -17,9 +17,8 @@ function Header() {
         </div>
         <div className='right-header'>
           <Button text="Literature" color="grey" text_color="white" className='right-button l-button' toPage="/literature" option2="true"/>
-          <Button text="Powerlifting" color="grey" text_color="white" className='right-button p-button' toPage="/powerlifting" option2="true"/>
-          <Button text="Bodybuilding" color="grey" text_color="white" className='right-button b-button' toPage="/bodybuilding" option2="true"/>
-          <Button text="Profile" color="grey" text_color="white" className='right-button profile-button' toPage="/profile" option2="true"/>
+          <Button text="Media" color="grey" text_color="white" className='right-button m-button' toPage="/media" option2="true"/>
+          <Button text="Overview" color="grey" text_color="white" className='right-button o-button' toPage="/overview" option2="true"/>
         </div>
       </nav>
     </div>
