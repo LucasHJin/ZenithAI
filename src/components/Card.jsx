@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/Card.css'
 import PropTypes from 'prop-types';
 
@@ -9,8 +10,10 @@ const formatLinkText = (url) => {
 };
 
 const Card = ({ title, date, description, source, tags, link, width, height, id }) => {
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    navigate(`/card/${id}`);
+    navigate(`/study/${id}`); //navigates to the dynamic url based on the id
   };
 
   return (
@@ -28,7 +31,7 @@ const Card = ({ title, date, description, source, tags, link, width, height, id 
           target="_blank"
           rel="noopener noreferrer"
           className="link"
-          onClick={(e) => e.stopPropagation()}
+          onClick={(e) => e.stopPropagation()} //stops the on click handleClick from being called
         >{formatLinkText(link)}</a>
         <div className="description">{description}</div>
         <div className="tags">
@@ -63,6 +66,6 @@ Card.defaultProps = {
   width: 35,
   height: 25,
   id: "1"
-}
+};
 
 export default Card;

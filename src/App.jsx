@@ -7,6 +7,7 @@ import Literature from './pages/Literature';
 import Media from './pages/Media';
 import Home from './pages/Home';
 import NoPage from './pages/NoPage'
+import SpecificStudy from './pages/SpecificStudy';
 
 import './styles/App.css';
 
@@ -20,6 +21,7 @@ function App() {
             <Route path="/overview" element={<Overview />} />
             <Route path="/literature" element={<Literature />} />
             <Route path="/media" element={<Media />} />
+            <Route path="/study/:id" element={<SpecificStudy />} /> {/* route to any instance of a study */}
             <Route path="*" element={<NoPage />} />
           </Route>
         </Routes>
