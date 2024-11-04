@@ -1,9 +1,9 @@
 import React from 'react';
-import '../styles/Tags.css'
+import '../styles/Tag.css'
 import PropTypes from 'prop-types';
 
 
-const Tags = ({  }) => {
+const Tag = ({  }) => {
   return (
     <>
         <div>TAGS</div>
@@ -12,4 +12,6 @@ const Tags = ({  }) => {
 }
 
 
-export default Tags;
+export default Tag;
+
+//do tags

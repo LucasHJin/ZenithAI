@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.css'
 import Button from './Button.jsx'
 
+//MAYBE ADD HOVER EFFECT FOR TITLE (TRANSITION TO WHITE)
 
 function Header() {
   return (
