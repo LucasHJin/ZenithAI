@@ -1,20 +1,35 @@
 import React from 'react';
 import '../styles/Card.css'
-import Button from './Button.jsx'
 import PropTypes from 'prop-types';
 
+//make clicking on card lead to a new page
 
-const Card = ({ title, date, description, source, tags, link, width, height, image }) => {
+const formatLinkText = (url) => {
+  return url.replace(/^(https?:\/\/)?(www\.)?/, ''); //remove protocol and www
+};
+
+const Card = ({ title, date, description, source, tags, link, width, height, id }) => {
+  const handleClick = () => {
+    navigate(`/card/${id}`);
+  };
+
   return (
     <>
       <div 
         className="card" 
+        onClick={handleClick} //navigate to details page on click
         style={{ width: width ? `${width}vw` : 'auto', height: height ? `${height}vh` : 'auto' }}
       >
         <div className="title">{title}</div>
         <div className="date">{date}</div>
         <div className="source">{source}</div>
-        <div className="link">{link}</div>
+        <a 
+          href={link}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="link"
+          onClick={(e) => e.stopPropagation()}
+        >{formatLinkText(link)}</a>
         <div className="description">{description}</div>
         <div className="tags">
           {tags.map((tag, index) => (
@@ -35,7 +50,7 @@ Card.propTypes = {
     link: PropTypes.string,
     width: PropTypes.number,
     height: PropTypes.number,
-    image: PropTypes.string,
+    id: PropTypes.string.isRequired,
 };
 
 Card.defaultProps = {
@@ -44,10 +59,10 @@ Card.defaultProps = {
   description: "Lorem ipsum odor amet, consectetuer adipiscing elit. In luctus ad neque inceptos mauris sit. Dapibus libero sem commodo iaculis est. Porta fusce per aliquam ultricies pharetra. Feugiat mauris interdum vehicula etiam senectus velit montes facilisis nisl. Sapien ad senectus eros litora ad morbi rhoncus interdum ullamcorper! Elementum dui efficitur inceptos ultrices tempor sapien lectus nulla. ",
   source: "N/A",
   tags: [],
-  link: "NO LINK",
+  link: "https://www.google.com",
   width: 35,
   height: 25,
-  image: "NO IMAGE"
+  id: "1"
 }
 
 export default Card;

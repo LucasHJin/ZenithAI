@@ -79,4 +79,5 @@
     justify-self: end; /* Both aligning to the right (of cell and text) */
     margin: 0;
     cursor: pointer; 
+    text-decoration: none;
 }
