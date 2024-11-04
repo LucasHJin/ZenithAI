@@ -1,0 +1,82 @@
+.card {
+    display: grid;
+    grid-template-areas: /* Grid template for how to arrange all the elements*/
+      "title      date"
+      "source     link"
+      "description description"
+      "tags       tags"; 
+    grid-template-columns: 1fr 1fr; /* Each take equal 1 fraction of space */
+    grid-template-rows: auto auto 1fr auto; /* 1st, 2nd and 4th all take up as much as they need, description takes rest */
+    gap: 0.5vw; /* The space between elements */
+    padding: 0.9vw; 
+    background-color: white; 
+    box-shadow: 0px 0.25vh 5px rgba(0, 0, 0, 0.2); 
+    border-radius: 10px; 
+    width: 100%; 
+    box-sizing: border-box; /* Includes padding and border in width calculation */
+}
+
+.title {
+    grid-area: title; /* This makes the title element occupy the grid area of title */
+    font-size: 1.2em; 
+    font-weight: bold; 
+    text-align: left;
+    margin: 0; 
+}
+
+.date {
+    grid-area: date; 
+    font-size: 0.9em; 
+    color: #666; 
+    text-align: right;
+    margin: 0; 
+}
+
+.source {
+    grid-area: source; 
+    font-size: 0.9em; 
+    color: #666; 
+    text-align: left;
+    margin: 0; 
+}
+
+.description {
+    grid-area: description; 
+    font-size: 0.8em;
+    text-align: left;
+    margin: 0; 
+    overflow: hidden; /* Hide overflow */
+    display: -webkit-box; 
+    -webkit-box-orient: vertical; 
+    -webkit-line-clamp: 4; /* Limits to 4 lines before truncation (denoting what is overflow) */
+    overflow-wrap: break-word; /* Ensures text wraps within the container */
+    max-height: 6.0em; /* Adjusts based on line height for 4 lines (4*1.5=6) */
+    line-height: 1.5em; 
+}
+
+.tags {
+    grid-area: tags; 
+    display: flex; 
+    flex-wrap: nowrap; 
+    gap: 5px; 
+    align-items: center; 
+    overflow: hidden; 
+
+}
+
+.tag { /* TO BE CHANGED WITH TAG COMPONENT */
+    background-color: #e0e0e0; 
+    border-radius: 4px; 
+    padding: 4px 8px; 
+    margin: 0; 
+}
+
+.link {
+    grid-area: link; /* Made link element occupy the grid area of link */
+    font-size: 0.8em;
+    color: #007bff;
+    text-align: right; 
+    justify-self: end; /* Both aligning to the right (of cell and text) */
+    margin: 0;
+    cursor: pointer; 
+}
