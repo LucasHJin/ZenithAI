@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import '../styles/Header.css'
 import Button from './Button.jsx'
 
-//MAYBE ADD HOVER EFFECT FOR TITLE (TRANSITION TO WHITE)
+//DONT FORGET TO ADD A FOOTER WITH ALL RIGHTS RESERVED
 
 function Header() {
   return (
@@ -12,7 +12,16 @@ function Header() {
         <div className='left-header'>
           <Link to="/">
             <button className='logo-button'>
-                <img src='src/assets/images/zenith_logo.png' alt='Zenith logo button.'/>
+                <img 
+                  src='src/assets/images/zenith_logo.png' 
+                  alt='Zenith logo button.'
+                  className='default'
+                />
+                <img
+                  src='src/assets/images/zenith_logo_white.png'
+                  alt='Zenith logo button hover.'
+                  className='hover'
+                />
             </button>
           </Link>
         </div>
