@@ -26,9 +26,9 @@ function Header() {
           </Link>
         </div>
         <div className='right-header'>
-          <Button text="Literature" color="grey" text_color="white" className='right-button l-button' toPage="/literature" option2="true"/>
-          <Button text="Media" color="grey" text_color="white" className='right-button m-button' toPage="/media" option2="true"/>
-          <Button text="Overview" color="grey" text_color="white" className='right-button o-button' toPage="/overview" option2="true"/>
+          <Button text="Literature" color="grey" text_color="white" className='right-button l-button' toPage="/literature" option2={true}/>
+          <Button text="Media" color="grey" text_color="white" className='right-button m-button' toPage="/media" option2={true}/>
+          <Button text="Overview" color="grey" text_color="white" className='right-button o-button' toPage="/overview" option2={true}/>
         </div>
       </nav>
     </div>
