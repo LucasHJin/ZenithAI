@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import '../styles/Card.css'
 import PropTypes from 'prop-types';
 
-//make clicking on card lead to a new page
 
 const formatLinkText = (url) => {
   return url.replace(/^(https?:\/\/)?(www\.)?/, ''); //remove protocol and www

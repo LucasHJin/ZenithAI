@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, addDoc, doc, setDoc} from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, setDoc, getDocs} from "firebase/firestore";
 import { auth, db } from "../firebase"; // Importing from Firebase Configuration
 
 async function adminWriteData(data, coll, docId=null) {
