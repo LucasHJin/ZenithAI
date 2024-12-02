@@ -1,19 +1,32 @@
-import React from 'react';
+import { React, useState, useEffect } from "react";
 import '../styles/Literature.css'
+import Card from '../components/Card'
 import { getStudyData } from '../services/firebaseAdmin'
 
-//WORK ON CARD NOW WITH READING FROM FIRESTORE
-
 function Literature() {
-  const getData = () => {
-    let data = getStudyData();
-    console.log(data);
-  }
+  const [allStudyData, setAllStudyData] = useState([]);
+
+  const getData = async () => {
+    try {
+      const data = await getStudyData();
+      setAllStudyData(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    // Show cards when component mounts
+    getData();
+  }, []);
 
   return (
     <>
-      <div>LITERATURE</div>
-      <button onClick={getData}>GET</button>
+      <div className="individual-card">
+        {allStudyData.map((item) => (
+          <Card key={item.id} id={item.id} title={item.title} date={item.publishDate} description={item.abstract} source={item.doi}/>
+        ))}
+      </div>
     </>
   );
 }

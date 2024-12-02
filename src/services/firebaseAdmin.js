@@ -36,13 +36,14 @@ async function writeStudy(studyData) {
     }
 
     const date = new Date().toISOString().split('T')[0]; 
-    const sanitizedTitle = studyData.title.replace(/[^a-zA-Z0-9-_]/g, '_'); // Replace invalid characters
+    const sanitizedTitle = studyData.title.replace(/[^a-zA-Z0-9-_']/g, '_').replace(/'/g, ''); // Replace invalid characters
     const docId = `${date}_${sanitizedTitle}`; 
 
     adminWriteData(studyData, fsCollection, docId)
 }
 
 // Anyone can read
+// CURRENTLY FETCHES ALL DOCUMENTS, MAKE PAGEINATION AND ONLY FETCH 20 per page
 async function getStudyData() {
     try {
         const studiesCollection = collection(db, "Studies");
