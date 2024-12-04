@@ -24,7 +24,7 @@ function Literature() {
     <>
       <div className="individual-card">
         {allStudyData.map((item) => (
-          <Card key={item.id} id={item.id} title={item.title} date={item.publishDate} description={item.abstract} source={item.doi}/>
+          <Card key={item.id} id={item.id} title={item.title} date={item.publishDate} description={item.abstract} source={item.doi} info={item}/>
         ))}
       </div>
     </>

@@ -8,11 +8,13 @@ const formatLinkText = (url) => {
   return url.replace(/^(https?:\/\/)?(www\.)?/, ''); //remove protocol and www
 };
 
-const Card = ({ title, date, description, source, tags, link, width, height, id }) => {
+const Card = ({ title, date, description, source, tags, link, width, height, id, info }) => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/study/${id}`); //navigates to the dynamic url based on the id
+    navigate(`/study/${id}`, {
+      state: { info } //pass info
+    }); //navigates to the dynamic url based on the id
   };
 
   return (
@@ -53,6 +55,26 @@ Card.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
     id: PropTypes.string.isRequired,
+    info: PropTypes.arrayOf(
+      PropTypes.shape({
+          id: PropTypes.string,
+          authors: PropTypes.arrayOf(PropTypes.string),
+          doi: PropTypes.string,
+          issue: PropTypes.number,
+          references: PropTypes.arrayOf(
+              PropTypes.shape({
+                  author: PropTypes.string.isRequired,
+                  doi: PropTypes.string.isRequired,
+                  title: PropTypes.string.isRequired,
+              })
+          ),
+          sections: PropTypes.arrayOf(PropTypes.string),
+          tags: PropTypes.arrayOf(PropTypes.string),
+          source: PropTypes.string,
+          title: PropTypes.string,
+          volume: PropTypes.number,
+      })
+  ).isRequired,
 };
 
 Card.defaultProps = {
