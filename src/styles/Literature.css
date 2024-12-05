@@ -1,0 +1,30 @@
+.cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.page-numbers {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 2vh 0vh;
+  }
+
+.pagination {
+    display: flex;
+    list-style-type: none;
+    gap: 5px;
+}
+
+.pagination li {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+  
+.pagination .active {
+    background-color: #007BFF;
+    color: white;
+    font-weight: bold;
+}

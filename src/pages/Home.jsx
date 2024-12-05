@@ -10,7 +10,7 @@ function Home() {
   //functions to test
   const handleWriteData = () => {
     const studyExample = {
-      title: "Biosphere's impacts on the earth",
+      title: "TESTING 8",
       authors: ["Alice Johnson", "Bob Smith"],
       abstract: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum malesuada faucibus dolor vel pulvinar. Donec hendrerit et quam in viverra. Aliquam quam felis, tincidunt sed ultricies in, faucibus et augue. Sed non suscipit lorem. Aliquam pretium, augue vel placerat varius, nisi velit rutrum lectus, id lacinia tortor nulla in urna. Integer ut fermentum purus, quis volutpat ex. Nunc lacus augue, tincidunt quis turpis at, feugiat finibus lectus. Vivamus vel nibh sit amet justo pellentesque ullamcorper. Nullam non odio ipsum. Duis id pulvinar quam. Ut dapibus sodales turpis ut interdum. Integer at arcu sed leo imperdiet pellentesque eget eget orci. Duis tempor, arcu maximus congue aliquam, odio elit varius quam, et ultrices erat eros vehicula ante. Donec hendrerit neque in pulvinar semper.",
       publishDate: "2023-09-15",
