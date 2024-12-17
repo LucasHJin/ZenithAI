@@ -19,7 +19,7 @@ function App() {
           <Route path="/" element={<Layout />}> {/* wrap routes in layout (to always have nav bar) */}
             <Route index element={<Home />} />  {/* route for '/' */}
             <Route path="/overview" element={<Overview />} />
-            <Route path="/literature" element={<Literature />} />
+            <Route path="/literature/:page" element={<Literature />} />
             <Route path="/media" element={<Media />} />
             <Route path="/study/:id" element={<SpecificStudy />} /> {/* route to any instance of a study */}
             <Route path="*" element={<NoPage />} />

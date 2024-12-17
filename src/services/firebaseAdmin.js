@@ -1,5 +1,5 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { getFirestore, collection, addDoc, doc, setDoc, getDocs} from "firebase/firestore";
+import { getFirestore, collection, addDoc, doc, setDoc, getDocs, orderBy, limit, startAfter, getCountFromServer, query } from "firebase/firestore";
 import { auth, db } from "../firebase"; // Importing from Firebase Configuration
 
 async function adminWriteData(data, coll, docId=null) {
@@ -43,24 +43,37 @@ async function writeStudy(studyData) {
 }
 
 // Anyone can read
-// CURRENTLY FETCHES ALL DOCUMENTS, MAKE PAGEINATION AND ONLY FETCH 20 per page
-async function getStudyData() {
+async function getStudyData(batchSize=1, lastDoc=null) {
     try {
         const studiesCollection = collection(db, "Studies");
-        // Get all documents
-        const querySnapshot = await getDocs(studiesCollection);
-        // Map through and get data
-        const studies = querySnapshot.docs.map(doc => ({
+        let studiesQuery = query(studiesCollection, orderBy("title", "desc"), limit(batchSize));
+        if (lastDoc) {
+            studiesQuery = query(studiesCollection, orderBy("title", "desc"), startAfter(lastDoc), limit(batchSize));
+        }
+        const querySnapshot = await getDocs(studiesQuery);
+        const studies = querySnapshot.docs.map((doc) => ({
             id: doc.id,
-            ...doc.data()
+            ...doc.data(),
         }));
+        const lastVisibleDoc = querySnapshot.docs[querySnapshot.docs.length - 1];
 
-        console.log("Retrieved studies: ", studies);
-        return studies;
+        return { studies, lastDoc: lastVisibleDoc };
     } catch (error) {
         console.error("Error retrieving studies: ", error);
         throw error;
     }
 }
 
-export { writeStudy, getStudyData };
+// Total amount of study documents
+async function getTotalStudyCount() {
+    try {
+        const studiesCollection = collection(db, "Studies");
+        const snapshot = await getCountFromServer(studiesCollection);
+        return snapshot.data().count;
+    } catch (error) {
+        console.error("Error fetching total study count:", error);
+        return 0;
+    }
+}
+
+export { writeStudy, getStudyData, getTotalStudyCount };
