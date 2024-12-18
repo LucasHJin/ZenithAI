@@ -15,13 +15,21 @@ function Literature() {
   const { page } = useParams();
   const navigate = useNavigate();
 
-  // Set currentPage to url page number
   useEffect(() => {
-    if (page) {
-      setCurrentPage(parseInt(page));
+    // Only run it once totalPages has loaded
+    if (totalPages === 0) return;
+    //console.log(totalPages);
+    //console.log(page);
+    const pageNum = parseInt(page);
+    if (isNaN(pageNum) || pageNum < 1 || pageNum > totalPages) {
+      // Redirect if invalid page
+      navigate('/invalid');
+    } else {
+      // Set currentPage to url page number
+      setCurrentPage(pageNum);
     }
     console.log("Current page (URL change): ", page);
-  }, [page]); 
+  }, [page, totalPages, navigate]); 
 
   // Fetch studies when currentPage is updated ^ 
   useEffect(() => {
@@ -37,7 +45,6 @@ function Literature() {
       console.log("Fetching data for page:", page);
       const { studies } = await getStudyData(itemsPerPage, page); 
       setAllStudyData(studies); 
-      console.log(studies);  
     } catch (error) {
       console.error("Error fetching studies:", error);
     } finally {
