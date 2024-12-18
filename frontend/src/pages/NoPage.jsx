@@ -4,7 +4,7 @@ import React from 'react';
 
 function NoPage() {
   return (
-    <div>ERROR NO PAGE</div>
+    <div>404 NOT FOUND</div>
   );
 }
 

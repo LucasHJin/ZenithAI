@@ -36,9 +36,9 @@ app.post("/api/studies", async (req, res) => {
     return res.status(400).json({ error: "'title' is required" });
   }
 
-  //const date = new Date().toISOString().split("T")[0];
-  //const sanitizedTitle = title.replace(/[^a-zA-Z0-9-_']/g, "_").replace(/'/g, "");
-  //const id = `${date}_${sanitizedTitle}`;
+  const date = new Date().toISOString().split("T")[0]; //replace later with date published instead of date analyzed
+  const sanitizedTitle = title.replace(/[^a-zA-Z0-9-_']/g, "_").replace(/'/g, "");
+  const id = `${date}_${sanitizedTitle}`;
 
   try {
     const result = await studiesCollection.insertOne({
@@ -68,10 +68,6 @@ app.get("/api/studies", async (req, res) => {
   const batchSize = parseInt(req.query.batchSize) || 20;
   const pageNumber = parseInt(req.query.page) || 1;
   const offset = (pageNumber - 1) * batchSize;
-
-  console.log(batchSize);
-  console.log(pageNumber);
-  console.log(offset);
 
   try {
     const studies = await studiesCollection

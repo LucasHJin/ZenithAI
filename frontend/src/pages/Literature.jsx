@@ -71,6 +71,30 @@ function Literature() {
     navigate(`/literature/${pageNum}`); 
   };
 
+  const generatePageNumbers = () => {
+    const range = [];
+    const maxVisiblePages = 5;
+    const start = Math.max(1, currentPage - 2);
+    const end = Math.min(totalPages, currentPage + 2);
+
+    // Show first and last page if needed
+    if (start > 1) {
+      range.push(1);
+      if (start > 2) range.push('...');
+    }
+
+    for (let i = start; i <= end; i++) {
+      range.push(i);
+    }
+
+    if (end < totalPages) {
+      if (end < totalPages - 1) range.push('...');
+      range.push(totalPages);
+    }
+
+    return range;
+  };
+
   return (
     <>
       <div className="search-container">
@@ -108,15 +132,18 @@ function Literature() {
         >
           Previous
         </button>
-        {[...Array(totalPages).keys()].map((pageNum) => (
+
+        {generatePageNumbers().map((pageNum, index) => (
           <button
-            key={pageNum + 1}
-            className={pageNum + 1 === currentPage ? "active" : ""}
-            onClick={() => handlePageChange(pageNum + 1)}
+            key={index}
+            className={pageNum === currentPage ? "active" : ""}
+            onClick={() => typeof pageNum === "number" && handlePageChange(pageNum)}
+            disabled={typeof pageNum === "string"} // Disable ellipsis
           >
-            {pageNum + 1}
+            {pageNum}
           </button>
         ))}
+
         <button
           disabled={currentPage === totalPages}
           onClick={() => handlePageChange(currentPage + 1)}
