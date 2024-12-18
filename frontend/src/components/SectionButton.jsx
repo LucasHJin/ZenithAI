@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import '../styles/Button.css'
+import '../styles/SectionButton.css'
 
 
 //button component for all buttons on sight -> pass specific values with props
@@ -15,25 +15,14 @@ const StyledButton = styled.button`
   background-color: ${(props) => props.color};
   color: ${(props) => props.text_color};
   height: ${(props) => `${props.height}vh`};
-  width: ${(props) => (props.option2 ? 'auto' : `${props.width}vw`)}; /* take up as much width as necessary -> so that each button can be equal spaced*/
-  padding: ${(props) => (props.option2 ? '0' : '0')}; /* no padding */
-  border: ${(props) => (props.option2 ? 'none' : `2px solid ${props.border_color}`)};
+  width: auto; /* take up as much width as necessary -> so that each button can be equal spaced*/
+  padding: 0; /* no padding */
+  border: none;
   position: relative;
 
   /* hover effect */
-  ${(props) =>
-    !props.option2 &&
-    `
-    &:hover { /* only do this hover if not option2 */
-      background-color: ${props.text_color};
-      color: ${props.color};
-      border-color: ${props.border_color};
-    }
-    `
-  }
 
   ${(props) =>
-    props.option2 &&
     `
     &::after {
       content: "";
@@ -53,7 +42,7 @@ const StyledButton = styled.button`
   `}
 `;
 
-const Button = ({ text, color, text_color, border_color, height, width, className, toPage, option2 }) => {
+const SectionButton = ({ text, color, text_color, border_color, height, width, className, toPage }) => {
   //use custom StyledButton instead of normal button
   return (
     <Link to={toPage} style={{ textDecoration: 'none', color: 'inherit' }}>
@@ -64,7 +53,6 @@ const Button = ({ text, color, text_color, border_color, height, width, classNam
         border_color={border_color}
         height={height}
         width={width} 
-        option2={option2} /* option 2 is for buttons with underline */
       >
         {text || "BUTTON"}
       </StyledButton>
@@ -72,7 +60,7 @@ const Button = ({ text, color, text_color, border_color, height, width, classNam
   );
 };
 
-Button.propTypes = {
+SectionButton.propTypes = {
     text: PropTypes.string,
     color: PropTypes.string,
     text_color: PropTypes.string,
@@ -81,10 +69,9 @@ Button.propTypes = {
     width: PropTypes.number,
     className: PropTypes.string,
     toPage: PropTypes.string,
-    option2: PropTypes.bool,
 };
 
-Button.defaultProps = {
+SectionButton.defaultProps = {
     text: 'BUTTON',
     color: '#000000',
     text_color: '#FFFFFF',
@@ -93,7 +80,6 @@ Button.defaultProps = {
     width: 7,
     className: '',
     toPage: '/',
-    option2: false,
 };
 
-export default Button;
+export default SectionButton;

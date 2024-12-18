@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import '../styles/Header.css'
-import Button from './Button.jsx'
+import SectionButton from './SectionButton'
 
 //DONT FORGET TO ADD A FOOTER WITH ALL RIGHTS RESERVED
 
@@ -26,9 +26,9 @@ function Header() {
           </Link>
         </div>
         <div className='right-header'>
-          <Button text="Literature" color="grey" text_color="white" className='right-button l-button' toPage="/literature/1" option2={true}/>
-          <Button text="Media" color="grey" text_color="white" className='right-button m-button' toPage="/media" option2={true}/>
-          <Button text="Overview" color="grey" text_color="white" className='right-button o-button' toPage="/overview" option2={true}/>
+          <SectionButton text="Literature" color="grey" text_color="white" className='right-button l-button' toPage="/literature/1"/>
+          <SectionButton text="Media" color="grey" text_color="white" className='right-button m-button' toPage="/media"/>
+          <SectionButton text="Overview" color="grey" text_color="white" className='right-button o-button' toPage="/overview"/>
         </div>
       </nav>
     </div>

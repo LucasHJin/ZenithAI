@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../components/Button'
+import SectionButton from '../components/SectionButton';
 import Card from '../components/Card';
 import { writeStudy } from "../services/acessDB";
 import { searchAndFetchPMC } from '../services/pmcService';
@@ -39,7 +39,7 @@ function Home() {
         <div>HOME</div>
         <button onClick={handleWriteData}>Write to Firestore</button>
         <button onClick={searchPMC}>SEARCH</button>
-        <Button color="white" text_color="black"/>
+        <SectionButton color="white" text_color="black"/>
         <Card tags={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 1511, 16, 16]}></Card>
       </div>
     </>
