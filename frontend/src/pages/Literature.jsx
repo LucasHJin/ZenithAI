@@ -15,18 +15,29 @@ function Literature() {
   const { page } = useParams();
   const navigate = useNavigate();
 
+  // Set currentPage to url page number
   useEffect(() => {
     if (page) {
-      setCurrentPage(parseInt(page)); 
+      setCurrentPage(parseInt(page));
     }
+    console.log("Current page (URL change): ", page);
   }, [page]); 
+
+  // Fetch studies when currentPage is updated ^ 
+  useEffect(() => {
+    if (currentPage && parseInt(page)===currentPage) { // Need both an updated currentPage and for that to be the same as the page link number so that it doesn't rerender over the desired content
+      console.log("PAGE UPDATED: Fetching data for page:", currentPage);
+      fetchStudies(currentPage);  
+    }
+  }, [currentPage, page]); 
 
   const fetchStudies = async (page = 1) => {
     setLoading(true);
     try {
+      console.log("Fetching data for page:", page);
       const { studies } = await getStudyData(itemsPerPage, page); 
-      console.log(studies);
-      setAllStudyData(studies);
+      setAllStudyData(studies); 
+      console.log(studies);  
     } catch (error) {
       console.error("Error fetching studies:", error);
     } finally {
@@ -42,16 +53,15 @@ function Literature() {
     };
 
     initialFetch();
-    fetchStudies(currentPage);  
-  }, [currentPage]);  
+  }, []);  // Only run on initial mount to calculate total pages
 
   const handleSearch = () => {
     console.log("Search query:", searchQuery);
   };
 
   const handlePageChange = async (pageNum) => {
-    setCurrentPage(pageNum);
-    navigate(`/literature/${pageNum}`);
+    setCurrentPage(pageNum); 
+    navigate(`/literature/${pageNum}`); 
   };
 
   return (
