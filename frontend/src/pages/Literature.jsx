@@ -8,7 +8,6 @@ function Literature() {
   const [allStudyData, setAllStudyData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
-  const [lastDocs, setLastDocs] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [loading, setLoading] = useState(false);
   const itemsPerPage = 1;
@@ -25,16 +24,11 @@ function Literature() {
   const fetchStudies = async (page = 1) => {
     setLoading(true);
     try {
-      const lastDoc = page > 1 ? lastDocs[page - 2] : null;
-      const { studies, lastDoc: newLastDoc } = await getStudyData(itemsPerPage, lastDoc);
-      setLastDocs((prev) => {
-        const updated = [...prev];
-        updated[page - 1] = newLastDoc; 
-        return updated;
-      });
+      const { studies } = await getStudyData(itemsPerPage, page); 
+      console.log(studies);
       setAllStudyData(studies);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      console.error("Error fetching studies:", error);
     } finally {
       setLoading(false);
     }
